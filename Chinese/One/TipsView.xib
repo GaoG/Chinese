@@ -51,6 +51,8 @@
                 <constraint firstItem="QUK-Vy-P4s" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s1a-GF-772"/>
             </constraints>
             <connections>
+                <outlet property="answerImage" destination="Fg4-ap-GYQ" id="hNB-cg-fJ2"/>
+                <outlet property="tipsImage" destination="QUK-Vy-P4s" id="dkX-0K-s1c"/>
                 <outlet property="tipsLabel" destination="3l5-uP-ssn" id="wo5-qc-CYN"/>
             </connections>
             <point key="canvasLocation" x="138.8671875" y="135.9375"/>

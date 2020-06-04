@@ -198,19 +198,6 @@
 }
 
 
--(void)ceshi:(BOOL)state withView:(UIView *)view {
-    
-    CABasicAnimation *theAnimation;
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
-    theAnimation.fillMode = kCAFillModeForwards;
-    theAnimation.duration=.0001;
-    theAnimation.removedOnCompletion = NO;
-    theAnimation.fromValue = [NSNumber numberWithFloat:0];
-    theAnimation.toValue = [NSNumber numberWithFloat: state ? 3.1415926 : 0.0];
-    [view.layer addAnimation:theAnimation forKey:@"animateTransform"];
-    
-    
-}
 
 #pragma mark  websocekt 代理方法
 
@@ -236,17 +223,26 @@
 - (void)webSocketDidReceiveMessage:(NSString *)string {
     
     NSDictionary *dic  = [self dictionaryWithJsonString:string];
-//    {"name":"PC","step":1} 开始页面     下一题时候发送{"name":"PC","step":3}
-    if ([dic[@"name"] isEqualToString:@"PC"] &&([dic[@"step"]intValue]==1||[dic[@"step"]intValue]==3)) {
+//    {"name":"PC","step":1} 开始页面
+    if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==1&&!self.isFail) {
 //
+        [self.tipsView setTipsResult:1];
         [self operateView:self.tipsView withState:NO];
         
-    }else if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==2) {
+    }else if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==2 &&!self.isFail) {
 //        {"name":"PC","step":2}   开始倒计时 321
         
         
         [self operateView:self.countDownView withState:NO];
         [self.countDownView countDownBegin:3];
+    }else if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==3 &&!self.isFail) {
+        //      下一题时候发送{"name":"PC","step":3}
+        
+        [self.tipsView setTipsResult:1];
+        [self operateView:self.tipsView withState:NO];
+        
+//        [self operateView:self.countDownView withState:NO];
+//        [self.countDownView countDownBegin:3];
     }else if (dic[@"pic"]&&![dic[@"pic"] isEqualToString:@""]){
         /// 图片
         
@@ -254,49 +250,83 @@
         
         [self.webSocketManager sendDataToServerWithMessageType:@"0" data:@{@"name": @"mobile",@"nameid":[NSNumber numberWithInt:[self.myID intValue]]}];
         
-        NSString * base64Str = dic[@"pic"] ;
+        if (!self.isFail) {
+            NSString * base64Str = dic[@"pic"] ;
+            
+            NSData *imageData = [[NSData alloc]initWithBase64EncodedString:base64Str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            
+            UIImage *imaeg = [UIImage imageWithData:imageData];
+            self.chineseImage = imaeg;
+        }
         
-        NSData *imageData = [[NSData alloc]initWithBase64EncodedString:base64Str options:NSDataBase64DecodingIgnoreUnknownCharacters];
         
-        UIImage *imaeg = [UIImage imageWithData:imageData];
-        self.chineseImage = imaeg;
-        
-    }else if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==4){
-        
+    }else if ([dic[@"name"] isEqualToString:@"PC"] &&[dic[@"step"]intValue]==4 &&!self.isFail){
+        /// 废弃
         /// 抢答的结果 收到这个结果表示抢答成功
-        [self operateView:self.submitView withState:NO];
-        [self.submitView RushAnswer:@"抢答成功"];
-        /// 发送观众端消息
-        [self sendGroupMessage:@"10"];
+        
+        [self.tipsView setStateAcrion:3];
+        [self operateView:self.tipsView withState:NO];
+        
+    }else if ([dic[@"name"] isEqualToString:@"grab"] &&!self.isFail){
+        /// 判断这个 nameid 是不是自己
+        /// 抢答的结果 收到这个结果表示抢答成功
+        
+        if([dic[@"nameid"]intValue]==[self.myID intValue] ){
+        
+         [self.tipsView setStateAcrion:3];
+         [self operateView:self.tipsView withState:NO];
+            
+        [self sendGroupMessage:@"40"];
+        }else{
+            
+            [self operateView:self.startView withState:NO];
+        }
         
     }else if ([dic[@"name"] isEqualToString:@"reset"]){
         /// 回到首页 复位
+        self.isFail = NO;
         self.chinsesNumber = 0;
         [self operateView:self.startView withState:NO];
+        [self sendGroupMessage:@"50"];
         
-    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==1){
+    }else if ([dic[@"name"] isEqualToString:@"restart"]){
+        /// 首页
+        [self operateView:self.startView withState:NO];
+
+        
+    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==1&&!self.isFail){
         /// 回答正确
         self.chinsesNumber ++;
-        [self operateView:self.submitView withState:NO];
-        [self.submitView RushAnswer:@"回答正确"];
+        [self.tipsView setTipsResult:2];
+        [self operateView:self.tipsView withState:NO];
+        /// 发送观众端消息
+        [self sendGroupMessage:@"10"];
         
         
-    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==2){
+    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==2&&!self.isFail){
         /// 回答失败
         self.chinsesNumber --;
-        [self operateView:self.submitView withState:NO];
-        [self.submitView RushAnswer:@"回答失败"];
-    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==3){
-        /// 回答失败
+        [self.tipsView setTipsResult:3];
+        [self operateView:self.tipsView withState:NO];
+        /// 发送观众端消息
+        [self sendGroupMessage:@"60"];
         
-        [self operateView:self.submitView withState:NO];
-        [self.submitView RushAnswer:@"晋级成功"];
-    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==4){
-        /// 回答失败
+    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==3&&!self.isFail){
+        /// 晋级成功
+        self.isFail = YES;
+        [self.tipsView setStateAcrion:1];
+        [self operateView:self.tipsView withState:NO];
+        /// 发送观众端消息
+        [self sendGroupMessage:@"20"];
         
-        [self operateView:self.submitView withState:NO];
-        [self.submitView RushAnswer:@"淘汰"];
-    }else if ([dic[@"name"] isEqualToString:@"showScored"]){
+    }else if ([dic[@"name"] isEqualToString:@"dispense"]&&[dic[@"targetId"]intValue]==1 &&[dic[@"resultId"]intValue]==4&&!self.isFail){
+        /// 淘汰
+        self.isFail = YES;
+        [self.tipsView setStateAcrion:2];
+        [self operateView:self.tipsView withState:NO];
+        [self sendGroupMessage:@"30"];
+        
+    }else if ([dic[@"name"] isEqualToString:@"showScored"]&&!self.isFail){
         /// 所有ipad显示积分
         
         [self sendGroupMessage:@"chineseNumber"];
