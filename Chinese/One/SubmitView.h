@@ -16,10 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 倒计时开始
 -(void)start;
 
--(void)RushAnswer:(NSString *)tipsStr;
+//-(void)RushAnswer:(NSString *)tipsStr;
 
 /// 设置图片
 -(void)setUpChineseImage:(UIImage *)image;
+/// 隐藏或显示汉字图片  yes / no
+-(void)hiddenChinsesImage:(BOOL)state;
+
+/// 设置提交按钮是否响应事件
+-(void)setupSubmitState:(BOOL)state;
+
 
 @end
 

@@ -30,6 +30,10 @@ NSString * const IPDIZHI = @"http://192.168.1.4:14500/gdqh";
 @property(nonatomic, strong) NSMutableArray *sendDataArray; //存储要发送给服务器的数据
 @property(nonatomic, assign) BOOL isActiveClose; //用于判断是否主动关闭长连接，如果是主动断开连接，连接失败的代理中，就不用执行 重新连接方法
 
+@property (nonatomic, copy) NSString *myIp;
+
+@property (nonatomic, copy) NSString *myId;
+
 @end
 
 
@@ -54,16 +58,17 @@ NSString * const IPDIZHI = @"http://192.168.1.4:14500/gdqh";
     return self;
 }
 
-//建立长连接
--(void)connectServer{
-    if(self.webScoket){
-        return;
-    }
-    
-    self.webScoket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:IPDIZHI]];
-    self.webScoket.delegate = self;
-    [self.webScoket open];
-}
+
+////建立长连接
+//-(void)connectServer{
+//    if(self.webScoket){
+//        return;
+//    }
+//
+//    self.webScoket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:IPDIZHI]];
+//    self.webScoket.delegate = self;
+//    [self.webScoket open];
+//}
 
 
 
@@ -75,6 +80,8 @@ NSString * const IPDIZHI = @"http://192.168.1.4:14500/gdqh";
     if(self.webScoket){
         return;
     }
+    self.myId = ID;
+    self.myIp = ip;
     self.webScoket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:37759",ip]]];
     self.webScoket.delegate = self;
     [self.webScoket open];
@@ -215,8 +222,8 @@ NSString * const IPDIZHI = @"http://192.168.1.4:14500/gdqh";
         if (ws.webScoket.readyState == SR_OPEN && ws.webScoket.readyState == SR_CONNECTING) {
             return ;
         }
-        
-        [ws connectServer];
+        [ws testConnectServerWithIp:self.myIp withdeviceID:self.myId];
+//        [ws connectServer];
         NSLog(@"重新连接......");
         if (ws.reConnectTime == 0) {//重连时间2的指数级增长
             ws.reConnectTime = 2;
@@ -315,7 +322,8 @@ NSString * const IPDIZHI = @"http://192.168.1.4:14500/gdqh";
                 [self reConnectServer];
             }
         }else{
-            [self connectServer];//连接服务器
+//            [self connectServer];//连接服务器
+            [self testConnectServerWithIp:self.myIp withdeviceID:self.myId];
         }
     }
 }

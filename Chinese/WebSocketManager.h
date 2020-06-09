@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, WebSocketStatus){
 
 
 +(instancetype)shared;
--(void)connectServer;//建立长连接
+//-(void)connectServer;//建立长连接
 -(void)reConnectServer;//重新连接
 -(void)webSocketClose;//关闭连接
 -(void)sendDataToServer:(NSString *)data; //向服务器发送数据

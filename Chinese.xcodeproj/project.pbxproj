@@ -7,18 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		210D5297247A4B6200B3A7EA /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210D5296247A4B6200B3A7EA /* ThirdViewController.m */; };
 		210D52EB247AC24700B3A7EA /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 210D52EA247AC24700B3A7EA /* WebSocketManager.m */; };
 		217A173224790EAB005D49A4 /* NumberScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A173124790EAB005D49A4 /* NumberScrollView.m */; };
 		217A173424790EC1005D49A4 /* NumberScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217A173324790EC1005D49A4 /* NumberScrollView.xib */; };
 		217A1737247910DC005D49A4 /* UILabel+WordSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A1736247910DC005D49A4 /* UILabel+WordSpacing.m */; };
 		217A173A2479166F005D49A4 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A17392479166F005D49A4 /* UIView+Category.m */; };
-		217A173E247928CE005D49A4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A173D247928CE005D49A4 /* SecondViewController.m */; };
 		217A17442479D347005D49A4 /* NSArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A17432479D347005D49A4 /* NSArray+ErrorHandle.m */; };
 		217A17492479D435005D49A4 /* NSMutableArray+ErrorHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A17452479D435005D49A4 /* NSMutableArray+ErrorHandle.m */; };
 		217A174A2479D435005D49A4 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A17482479D435005D49A4 /* NSObject+SwizzleMethod.m */; };
-		217A174E2479D6AB005D49A4 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A174D2479D6AB005D49A4 /* ProgressView.m */; };
-		217A17502479D6BA005D49A4 /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217A174F2479D6BA005D49A4 /* ProgressView.xib */; };
 		217A17532479D964005D49A4 /* ShowNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A17522479D964005D49A4 /* ShowNumberView.m */; };
 		217A17552479D96D005D49A4 /* ShowNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217A17542479D96D005D49A4 /* ShowNumberView.xib */; };
 		218A0F12247C1AE9001646A5 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 218A0F0D247C1AE9001646A5 /* Documentation.html */; };
@@ -45,8 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		210D5295247A4B6200B3A7EA /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
-		210D5296247A4B6200B3A7EA /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		210D52E9247AC24700B3A7EA /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
 		210D52EA247AC24700B3A7EA /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
 		217A173024790EAB005D49A4 /* NumberScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumberScrollView.h; sourceTree = "<group>"; };
@@ -57,17 +51,12 @@
 		217A17382479166F005D49A4 /* UIView+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		217A17392479166F005D49A4 /* UIView+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
 		217A173B24791DDE005D49A4 /* ConfigHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigHeader.h; sourceTree = "<group>"; };
-		217A173C247928CE005D49A4 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		217A173D247928CE005D49A4 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		217A17422479D346005D49A4 /* NSArray+ErrorHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ErrorHandle.h"; sourceTree = "<group>"; };
 		217A17432479D347005D49A4 /* NSArray+ErrorHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ErrorHandle.m"; sourceTree = "<group>"; };
 		217A17452479D435005D49A4 /* NSMutableArray+ErrorHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ErrorHandle.m"; sourceTree = "<group>"; };
 		217A17462479D435005D49A4 /* NSObject+SwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SwizzleMethod.h"; sourceTree = "<group>"; };
 		217A17472479D435005D49A4 /* NSMutableArray+ErrorHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ErrorHandle.h"; sourceTree = "<group>"; };
 		217A17482479D435005D49A4 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
-		217A174C2479D6AB005D49A4 /* ProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
-		217A174D2479D6AB005D49A4 /* ProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
-		217A174F2479D6BA005D49A4 /* ProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		217A17512479D964005D49A4 /* ShowNumberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowNumberView.h; sourceTree = "<group>"; };
 		217A17522479D964005D49A4 /* ShowNumberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowNumberView.m; sourceTree = "<group>"; };
 		217A17542479D96D005D49A4 /* ShowNumberView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowNumberView.xib; sourceTree = "<group>"; };
@@ -120,15 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		210D5294247A4B2D00B3A7EA /* Third */ = {
-			isa = PBXGroup;
-			children = (
-				210D5295247A4B6200B3A7EA /* ThirdViewController.h */,
-				210D5296247A4B6200B3A7EA /* ThirdViewController.m */,
-			);
-			path = Third;
-			sourceTree = "<group>";
-		};
 		217A173F247928D6005D49A4 /* One */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,8 +139,6 @@
 		217A1740247928E8005D49A4 /* Second */ = {
 			isa = PBXGroup;
 			children = (
-				217A173C247928CE005D49A4 /* SecondViewController.h */,
-				217A173D247928CE005D49A4 /* SecondViewController.m */,
 				217A17512479D964005D49A4 /* ShowNumberView.h */,
 				217A17522479D964005D49A4 /* ShowNumberView.m */,
 				217A17542479D96D005D49A4 /* ShowNumberView.xib */,
@@ -185,16 +163,6 @@
 				217A17392479166F005D49A4 /* UIView+Category.m */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		217A174B2479D657005D49A4 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				217A174C2479D6AB005D49A4 /* ProgressView.h */,
-				217A174D2479D6AB005D49A4 /* ProgressView.m */,
-				217A174F2479D6BA005D49A4 /* ProgressView.xib */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		218A0F0C247C1AE9001646A5 /* GCD */ = {
@@ -235,10 +203,8 @@
 				21B963F824781919008B246B /* AppDelegate.m */,
 				210D52E9247AC24700B3A7EA /* WebSocketManager.h */,
 				210D52EA247AC24700B3A7EA /* WebSocketManager.m */,
-				217A174B2479D657005D49A4 /* Common */,
 				217A173F247928D6005D49A4 /* One */,
 				217A1740247928E8005D49A4 /* Second */,
-				210D5294247A4B2D00B3A7EA /* Third */,
 				217A17412479292F005D49A4 /* Tool */,
 				21B963FD24781919008B246B /* Main.storyboard */,
 				21B964002478191B008B246B /* Assets.xcassets */,
@@ -335,7 +301,6 @@
 				21B964162478B9A0008B246B /* CountDownView.xib in Resources */,
 				218A0F12247C1AE9001646A5 /* Documentation.html in Resources */,
 				21B964252478C79E008B246B /* SubmitView.xib in Resources */,
-				217A17502479D6BA005D49A4 /* ProgressView.xib in Resources */,
 				217A173424790EC1005D49A4 /* NumberScrollView.xib in Resources */,
 				21B9641B2478BF33008B246B /* StartView.xib in Resources */,
 			);
@@ -392,16 +357,13 @@
 			files = (
 				217A17492479D435005D49A4 /* NSMutableArray+ErrorHandle.m in Sources */,
 				21B963FC24781919008B246B /* ViewController.m in Sources */,
-				217A173E247928CE005D49A4 /* SecondViewController.m in Sources */,
 				217A1737247910DC005D49A4 /* UILabel+WordSpacing.m in Sources */,
 				218A0F13247C1AE9001646A5 /* GCDAsyncUdpSocket.m in Sources */,
 				21B9641E2478C4AA008B246B /* TipsView.m in Sources */,
 				21B964192478BF2A008B246B /* StartView.m in Sources */,
-				217A174E2479D6AB005D49A4 /* ProgressView.m in Sources */,
 				21B964072478191B008B246B /* main.m in Sources */,
 				217A17532479D964005D49A4 /* ShowNumberView.m in Sources */,
 				21B963F924781919008B246B /* AppDelegate.m in Sources */,
-				210D5297247A4B6200B3A7EA /* ThirdViewController.m in Sources */,
 				210D52EB247AC24700B3A7EA /* WebSocketManager.m in Sources */,
 				217A17442479D347005D49A4 /* NSArray+ErrorHandle.m in Sources */,
 				21B9640F2478AFF9008B246B /* IpConfigView.m in Sources */,

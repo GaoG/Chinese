@@ -14,9 +14,7 @@
 #import "SubmitView.h"
 #import "NumberScrollView.h"
 #import "ConfigHeader.h"
-#import "ProgressView.h"
 #import "TipsView.h"
-#import "SecondViewController.h"
 #import "WebSocketManager.h"
 #import "ShowNumberView.h"
 #import "GCDAsyncUdpSocket.h"
@@ -42,8 +40,6 @@
 
 @property (nonatomic, strong)ShowNumberView *showNumberView;
 
-
-@property (nonatomic, strong)ProgressView *progressView;
 
 @property (nonatomic, strong)NSMutableArray *viewArr;
 
@@ -84,8 +80,7 @@
     
     [self initSocket];
     
-    self.progressView.frame = self.view.bounds;
-    [self.view addSubview:self.progressView];
+
     
     
     self.configView.frame = self.view.bounds;
@@ -118,7 +113,7 @@
     self.showNumberView.frame = self.view.bounds;
     [self.view addSubview:self.showNumberView];
     
-    [self.viewArr addObjectsFromArray:@[self.configView,self.configView,self.countDownView,self.startView,self.submitView,self.numberScrollView,self.progressView,self.tipsView,self.showNumberView]];
+    [self.viewArr addObjectsFromArray:@[self.configView,self.configView,self.countDownView,self.startView,self.submitView,self.numberScrollView,self.tipsView,self.showNumberView]];
     
     
     [self operateView:self.configView withState:NO];
@@ -333,11 +328,25 @@
         
                   
         
-    }else if ([dic[@"name"] isEqualToString:@"hideScored"]){
+    }else if ([dic[@"name"] isEqualToString:@"hideScored"]&&!self.isFail){
         /// 所有ipad隐藏积分
         
          [self sendGroupMessage:@"hideScored"];
+    }else if ([dic[@"name"] isEqualToString:@"stopRace"]&&!self.isFail){
+        /// 提交按钮不能点击
+        
+        [self.submitView setupSubmitState:NO];
+//        [self operateView:self.submitView withState:NO];
+        [self operateView:self.startView withState:NO];
+        
+    }else if ([dic[@"name"] isEqualToString:@"hideP"]&&!self.isFail){
+        /// 隐藏汉字图片
+        
+        [self.submitView hiddenChinsesImage:YES];
+        [self operateView:self.submitView withState:NO];
     }
+
+    
 
     
     return;
@@ -408,6 +417,8 @@
         @weakify(self)
         _countDownView.endBlock = ^{
             @strongify(self)
+            [self.submitView setupSubmitState:YES];
+            [self.submitView hiddenChinsesImage:NO];
             [self.submitView setUpChineseImage:self.chineseImage];
             [self operateView:self.submitView withState:NO];
             
@@ -473,15 +484,6 @@
 }
 
 
--(ProgressView *)progressView {
-    
-    if (!_progressView) {
-        _progressView = [[[NSBundle mainBundle]loadNibNamed:@"ProgressView" owner:nil options:nil]lastObject];
-        
-    }
-    
-    return _progressView;
-}
 
 -(NSMutableArray *)viewArr{
     

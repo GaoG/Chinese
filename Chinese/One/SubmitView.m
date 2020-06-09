@@ -57,46 +57,53 @@
 - (void)start {
     self.submitBut.enabled = YES;
  
-    self.timer = 30;
-    self.timeL.text = @"30";
-    [_gcdTimer invalidate];
-    __weak id weakSelf = self;
-   
-    _gcdTimer = [SNTimer repeatingTimerWithTimeInterval:1 block:^{
-        [weakSelf updateTime];
-    }];
     
     
-    [self.gcdTimer fire];
-  
+    
+    return;
+    
+    /// 倒计时不需要了
+    
+//    self.timer = 30;
+//    self.timeL.text = @"30";
+//    [_gcdTimer invalidate];
+//    __weak id weakSelf = self;
+//
+//    _gcdTimer = [SNTimer repeatingTimerWithTimeInterval:1 block:^{
+//        [weakSelf updateTime];
+//    }];
+//
+//
+//    [self.gcdTimer fire];
+//
 }
 
+/// 不需要了
+//-(void)RushAnswer:(NSString *)tipsStr; {
+//
+//
+//    self.timeL.text = tipsStr;
+//
+//
+//}
 
--(void)RushAnswer:(NSString *)tipsStr; {
-    
-    
-    self.timeL.text = tipsStr;
-    
-    
-}
 
-
-
--(void)updateTime {
-    
-    self.timer --;
-  
-    
-    if (self.timer ==0) {
-        [self.gcdTimer invalidate];
-        self.timeL.text = @"已结束";
-        self.submitBut.enabled = NO;
-    }else{
-        
-        self.timeL.text = [NSString stringWithFormat:@"%ld",(long)self.timer];
-        
-    }
-}
+//
+//-(void)updateTime {
+//
+//    self.timer --;
+//
+//
+//    if (self.timer ==0) {
+//        [self.gcdTimer invalidate];
+//        self.timeL.text = @"已结束";
+//        self.submitBut.enabled = NO;
+//    }else{
+//
+//        self.timeL.text = [NSString stringWithFormat:@"%ld",(long)self.timer];
+//
+//    }
+//}
 
 - (IBAction)submitButAction:(UIButton*)sender {
     
@@ -110,6 +117,24 @@
 /// 设置图片
 -(void)setUpChineseImage:(UIImage *)image {
     self.chineseImage.image = image;
+}
+
+/// 隐藏或显示汉字图片  yes / no
+-(void)hiddenChinsesImage:(BOOL)state {
+    
+    self.chineseImage.hidden = state;
+    
+    
+}
+
+
+/// 设置提交按钮是否响应事件
+-(void)setupSubmitState:(BOOL)state {
+    
+    
+    self.submitBut.enabled = state;
+    
+    
 }
 
 
